@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   font-family: "Verdana";
   background: #3498db;
   color: #ecf0f1;
@@ -9,6 +10,46 @@ body, html {
 
 #map {
   height: 100%;
+}
+
+.introduction h1 {
+  text-align: center;
+}
+.introduction h2 {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media only screen and (min-width: 1280px) {
+  .introduction h1 {
+    font-size: 60px;
+  }
+  .introduction h2 {
+    width: 25em;
+    font-size: 30px;
+  }
+}
+@media only screen and (max-width: 1279px) and (min-width: 800px) {
+  .introduction h1 {
+    font-size: 60px;
+  }
+  .introduction h2 {
+    width: 25em;
+    font-size: 22px;
+  }
+}
+@media only screen and (max-width: 799px) and (min-width: 300) {
+  .introduction h1 {
+    font-size: 55px;
+  }
+  .introduction h2 {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    width: 6em;
+    font-size: 1px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

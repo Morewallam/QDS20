@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="latlog.js"></script> // Latitude/Longitude formulae
     <script src="geo.js"></script>    // Geodesy representation conversions
+    <script src="https://cdn.anychart.com/releases/8.0.0/js/anychart-base.min.js"></script>
 </head>
 
 <body>
@@ -24,6 +25,8 @@
         <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
     </div>
     <div id="map"></div>
+
+    <div id="bargraph"></div>
     <script>
       var p1 = new LatLon(51.5136, -0.0983);
       var p2 = new LatLon(51.4778, -0.0015);
@@ -49,6 +52,35 @@
           zoom: 10,
         });
       }
+
+      anychart.onDocumentReady(function() {
+ 
+      // set the data
+      var data = {
+          header: ["Name", "Death toll"],
+          rows: [
+            ["San-Francisco (1906)", 1500],
+            ["Messina (1908)", 87000],
+            ["Ashgabat (1948)", 175000],
+            ["Chile (1960)", 10000],
+            ["Tian Shan (1976)", 242000],
+            ["Armenia (1988)", 25000],
+            ["Iran (1990)", 50000]
+      ]};
+
+      // create the chart
+      var chart = anychart.column();
+
+      // add the data
+      chart.data(data);
+
+      // set the chart title
+      chart.title("The deadliest earthquakes in the XXth century");
+
+      // draw
+      chart.container("bargraph");
+      chart.draw();
+      });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDByyZn8zjkwo17zXO1gxpuVxa0HXYNPg&callback=initMap"
     async defer></script>

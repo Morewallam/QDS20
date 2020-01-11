@@ -24,7 +24,7 @@ html {
     }
 }
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (max-width: 3000px) and (min-width: 1280px) {
 
     .introduction {
         h1 {
@@ -33,7 +33,7 @@ html {
 
         h2 {
             width: 25em;
-            font-size: 30px;
+            font-size: 20px;
         }
     }
 
@@ -44,30 +44,27 @@ html {
 
     .introduction {
         h1 {
-            font-size: 60px;
+            font-size: 50px;
         }
 
         h2 {
             width: 25em;
-            font-size: 22px;
+            font-size: 18px;
         }
     }
 
 }
 
-@media only screen and (max-width: 799px) and (min-width: 300) {
+@media only screen and (max-width: 799px){
 
     .introduction {
         h1 {
-            font-size: 55px;
+            font-size: 38px;
         }
 
         h2 {
-            text-align: center;
-            margin-right: auto;
-            margin-left: auto;
-            width: 6em;
-            font-size: 1px;
+            width: 17em;
+            font-size: 13px;
         }
     }
 

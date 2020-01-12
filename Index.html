@@ -16,8 +16,8 @@
 <body>
     <div class="introduction">
         <h1 class="title">Ticket Tracker</h1>
-        <h2 class="bio">Ticket Tracker is a web application that displays the best locations for
-            the users to park with the lowest chances of getting a parking ticket</h2>
+        <h2 class="bio">Ticket Tracker is a web application that displays the parkings locations that
+            has the highest rate of getting a ticket in the city of Toronto</h2>
     </div>
 
     
@@ -102,9 +102,9 @@
     <script>
 
         gsap.from(".title", {opacity: 0, duration: 1, y: -100, ease: "power2.out"});
-        gsap.from(".bio", {opacity: 0, duration: 1, delay: 0.5, y: -100, ease: "bounce.out"});
+        gsap.from(".bio", {opacity: 0, duration: 1, delay: 0.5, x: -500, ease: "bounce.out"});
         gsap.from(".search-box", {opacity: 0, duration: 1, delay: 0.8, x: 500, ease: "slow(0.7, 0.7, false)"});
-        gsap.from("#map", {opacitu: 0, duration: 1.5, delay: 1.5, y: 500, ease: "circ.out"});
+        gsap.from("#map", {opacity: 0, duration: 1.5, delay: 1.5, y: 500, ease: "steps(12)"});
     </script>
 
 </body>

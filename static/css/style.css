@@ -8,47 +8,46 @@ html {
   padding: 0;
 }
 
-.search-box {
+#map {
+  height: 100%;
+  margin-top: 90px;
+}
+
+#floating-panel {
   position: absolute;
-  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #2f3640;
-  height: 40px;
+  padding: 5px;
   border-radius: 40px;
-  text-align: center;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.search-btn {
-  color: #3498db;
-  float: right;
-  width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background: #2f3640;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  font-family: "Roboto", "sans-serif";
+  line-height: 40px;
+  padding-left: 10px;
 }
 
-.search-txt {
+#address {
   border: none;
   background: none;
   outline: none;
-  float: left;
   padding: 0;
   color: white;
   font-size: 16px;
   line-height: 40px;
-  width: 300px;
+  width: 250px;
   text-align: center;
 }
 
-#map {
-  height: 100%;
-  margin-top: 90px;
+#submit {
+  background-color: #3498db;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 .introduction h1 {
@@ -70,47 +69,47 @@ html {
   }
 }
 @media only screen and (max-width: 3000px) and (min-width: 1280px) and (max-height: 625px) and (min-height: 550px) {
-  .search-box {
+  #floating-panel {
     top: 50%;
   }
 }
 @media only screen and (max-width: 3000px) and (min-width: 1280px) and (max-height: 725px) and (min-height: 626px) {
-  .search-box {
+  #floating-panel {
     top: 43%;
   }
 }
 @media only screen and (max-width: 3000px) and (min-width: 1280px) and (max-height: 825px) and (min-height: 726px) {
-  .search-box {
+  #floating-panel {
     top: 38%;
   }
 }
 @media only screen and (max-width: 3000px) and (min-width: 1280px) and (max-height: 925px) and (min-height: 826px) {
-  .search-box {
+  #floating-panel {
     top: 33%;
   }
 }
 @media only screen and (max-width: 3000px) and (min-width: 1280px) and (max-height: 1025px) and (min-height: 926px) {
-  .search-box {
+  #floating-panel {
     top: 29%;
   }
 }
 @media only screen and (max-width: 3000px) and (min-width: 1280px) and (max-height: 1125px) and (min-height: 1026px) {
-  .search-box {
+  #floating-panel {
     top: 27%;
   }
 }
 @media only screen and (max-width: 3000px) and (min-width: 1280px) and (max-height: 1225px) and (min-height: 1126px) {
-  .search-box {
+  #floating-panel {
     top: 25%;
   }
 }
 @media only screen and (max-width: 3000px) and (min-width: 1280px) and (max-height: 1325px) and (min-height: 1226px) {
-  .search-box {
+  #floating-panel {
     top: 23%;
   }
 }
 @media only screen and (max-width: 3000px) and (min-width: 1280px) and (max-height: 1450px) and (min-height: 1326px) {
-  .search-box {
+  #floating-panel {
     top: 21%;
   }
 }
@@ -123,52 +122,52 @@ html {
     font-size: 14px;
   }
 
-  .search-txt {
-    width: 250px;
+  #address {
+    width: 225px;
   }
 }
 @media only screen and (max-width: 1279px) and (min-width: 800px) and (max-height: 625px) and (min-height: 550px) {
-  .search-box {
+  #floating-panel {
     top: 34%;
   }
 }
 @media only screen and (max-width: 1279px) and (min-width: 800px) and (max-height: 725px) and (min-height: 626px) {
-  .search-box {
+  #floating-panel {
     top: 29%;
   }
 }
 @media only screen and (max-width: 1279px) and (min-width: 800px) and (max-height: 825px) and (min-height: 726px) {
-  .search-box {
+  #floating-panel {
     top: 25%;
   }
 }
 @media only screen and (max-width: 1279px) and (min-width: 800px) and (max-height: 925px) and (min-height: 826px) {
-  .search-box {
+  #floating-panel {
     top: 22%;
   }
 }
 @media only screen and (max-width: 1279px) and (min-width: 800px) and (max-height: 1025px) and (min-height: 926px) {
-  .search-box {
+  #floating-panel {
     top: 25%;
   }
 }
 @media only screen and (max-width: 1279px) and (min-width: 800px) and (max-height: 1125px) and (min-height: 1026px) {
-  .search-box {
+  #floating-panel {
     top: 23%;
   }
 }
 @media only screen and (max-width: 1279px) and (min-width: 800px) and (max-height: 1225px) and (min-height: 1126px) {
-  .search-box {
+  #floating-panel {
     top: 21%;
   }
 }
 @media only screen and (max-width: 1279px) and (min-width: 800px) and (max-height: 1325px) and (min-height: 1226px) {
-  .search-box {
+  #floating-panel {
     top: 19%;
   }
 }
 @media only screen and (max-width: 1279px) and (min-width: 800px) and (max-height: 1450px) and (min-height: 1326px) {
-  .search-box {
+  #floating-panel {
     top: 17%;
   }
 }
@@ -181,53 +180,53 @@ html {
     font-size: 12px;
   }
 
-  .search-txt {
-    width: 115px;
+  #address {
+    width: 90px;
     font-size: 9px;
   }
 }
 @media only screen and (max-width: 799px) and (max-height: 625px) and (min-height: 550px) {
-  .search-box {
+  #floating-panel {
     top: 34%;
   }
 }
 @media only screen and (max-width: 799px) and (max-height: 725px) and (min-height: 626px) {
-  .search-box {
+  #floating-panel {
     top: 29%;
   }
 }
 @media only screen and (max-width: 799px) and (max-height: 825px) and (min-height: 726px) {
-  .search-box {
+  #floating-panel {
     top: 25%;
   }
 }
 @media only screen and (max-width: 799px) and (max-height: 925px) and (min-height: 826px) {
-  .search-box {
+  #floating-panel {
     top: 22%;
   }
 }
 @media only screen and (max-width: 799px) and (max-height: 1025px) and (min-height: 926px) {
-  .search-box {
+  #floating-panel {
     top: 20%;
   }
 }
 @media only screen and (max-width: 799px) and (max-height: 1125px) and (min-height: 1026px) {
-  .search-box {
+  #floating-panel {
     top: 18%;
   }
 }
 @media only screen and (max-width: 799px) and (max-height: 1225px) and (min-height: 1126px) {
-  .search-box {
+  #floating-panel {
     top: 16%;
   }
 }
 @media only screen and (max-width: 799px) and (max-height: 1325px) and (min-height: 1226px) {
-  .search-box {
+  #floating-panel {
     top: 15%;
   }
 }
 @media only screen and (max-width: 799px) and (max-height: 1450px) and (min-height: 1326px) {
-  .search-box {
+  #floating-panel {
     top: 14%;
   }
 }

@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="static/css/style.css">
     <script src="https://kit.fontawesome.com/fe0e9159fa.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="latlog.js"></script> // Latitude/Longitude formulae
-    <script src="geo.js"></script>    // Geodesy representation conversions
+    <script src="latlog.js"></script> 
+    <script src="geo.js"></script>    
     <script src="CalculateArea.js"></script>
+    <script src="jsonData.js"></script>
     <script src="https://cdn.anychart.com/releases/8.0.0/js/anychart-base.min.js"></script>
 </head>
 
@@ -32,6 +33,9 @@
 
     <div id="bargraph"></div>
     <script>
+
+        console.log(data);
+        var areas = calculateAreas(data);
         var map;
         var input = document.getElementById('searchTextField');
         var searchBox = new google.maps.places.SearchBox(input, {
@@ -47,9 +51,6 @@
                 zoom: 10,
             });
         }
-        var p1 = new LatLon(51.5136, -0.0983);
-        var p2 = new LatLon(51.4778, -0.0015);
-        var dist = p1.distanceTo(p2); // in km
 
 
         /*

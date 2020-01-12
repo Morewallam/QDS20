@@ -6,26 +6,27 @@ function calculateAreas(dataset){
     var area = [[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]];
     //var areas[7][24][];
     const walkingSpeed = 5;
-
+    //dataset = []
     dataset.forEach(element => {
-        var day = element.getDay;
-        var time = element.getTime;
+        var day = element["DayOfWeek"];
+        var time = element["time_of_infraction"]/100-1;
+        var minutes = element["time_of_infraction"]%100;
         var lon1;
         var lat2;
 
 
         if(array[day][time].length == 0){
-            lon1 = element.getLon;
-            lat1 = element.getLat;
-            array[day][time][0] = [lon1 , lat1, lon1 , lat1, 1, time ];
+            lat1 = element.Latitude;
+            lon1 = element.Longitude;
+            array[day][time][0] = [lat1, lon1, lat1 , lon1, 1, minutes];
         }else{
-            for(var i = 1; i < areas[day][time].length; i++){
-                lon2 = newLatLon(element.getLon,element.getLat);
-                lat2= newLatLon(element.getLon,element.getLat);
+            for(var i = 0; i < areas[day][time].length; i++){
+                p1 = newLatLon(element.Latitude,element.Longitude);
+                p2= newLatLon(array[day][time][i][0],array[day][time][i][1]);
                 var dist = p1.distanceTo(p2);
-                if(dist/time == walkingSpeed){
-                    tickets = array[day][time][i][3];
-                    if(element.getLon - array[day][time][0] > array[day][time][2] - array[day][time][0] && element.getLat  - array[day][time][1] > array[day][time][3] - array[day][time][1]){
+                if(dist/(minutes - array[day][time][i][5]) <= walkingSpeed){
+                    array[day][time][i][3]++;
+                    if(element.Latitude - array[day][time][0] > array[day][time][2] - array[day][time][0] && element.Longitude  - array[day][time][1] > array[day][time][3] - array[day][time][1]){
                         array[day][time][i][2] = lon2;
                         array[day][time][i][3] = lat2;
                     }  

@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="static/css/style.css">
     <script src="https://kit.fontawesome.com/fe0e9159fa.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="latlog.js"></script> 
-    <script src="geo.js"></script>    
+    <script src="latlog.js"></script>
+    <script src="geo.js"></script>
     <script src="static/CalculateAreas.js"></script>
     <script src="jsonData.js"></script>
     <script src="https://cdn.anychart.com/releases/8.0.0/js/anychart-base.min.js"></script>
@@ -22,37 +22,54 @@
             has the highest rate of getting a ticket in the city of Toronto</h2>
     </div>
 
-    
-
-    <div class="search-box">
-        <input class="search-txt" type="text" name="parking" placeholder="Search Parking Locations...">
-        <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
+    <div id="floating-panel">
+        <input id="address" type="text" placeholder="Search Parking Locations...">
+        <input id="submit" type="button" value="Submit">
     </div>
+    <div id="map"><input type="text" id="mapsearch" placeholder="Search box" class="controls"></div>
 
-    <div id="map"></div>
 
     <div id="bargraph"></div>
     <script>
-
         console.log(data);
         var areas = calculateAreas(data);
         console.log(areas);
         var map;
         var input = document.getElementById('searchTextField');
-        var searchBox = new google.maps.places.SearchBox(input, {
-            bounds: defaultBounds
-        });
+        var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
                 center: {
                     lat: 43.6532,
                     lng: -79.3832
-                },
-                zoom: 10,
+                }
+            });
+
+            var geocoder = new google.maps.Geocoder();
+
+            document.getElementById('submit').addEventListener('click', function () {
+                geocodeAddress(geocoder, map);
             });
         }
 
+        function geocodeAddress(geocoder, resultsMap) {
+            var address = document.getElementById('address').value;
+            geocoder.geocode({
+                'address': address
+            }, function (results, status) {
+                if (status === 'OK') {
+                    resultsMap.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: resultsMap,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
 
         /*
         $.ajax({
@@ -66,7 +83,7 @@
           }
         });
         */
-        
+
 
         anychart.onDocumentReady(function () {
 
@@ -103,11 +120,33 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.0.4/dist/gsap.min.js"></script>
     <script>
-
-        gsap.from(".title", {opacity: 0, duration: 1, y: -100, ease: "power2.out"});
-        gsap.from(".bio", {opacity: 0, duration: 1, delay: 0.5, x: -500, ease: "bounce.out"});
-        gsap.from(".search-box", {opacity: 0, duration: 1, delay: 0.8, x: 500, ease: "slow(0.7, 0.7, false)"});
-        gsap.from("#map", {opacity: 0, duration: 1.5, delay: 1.5, y: 500, ease: "circ.out"});
+        gsap.from(".title", {
+            opacity: 0,
+            duration: 1,
+            y: -100,
+            ease: "power2.out"
+        });
+        gsap.from(".bio", {
+            opacity: 0,
+            duration: 1,
+            delay: 0.5,
+            x: -500,
+            ease: "bounce.out"
+        });
+        gsap.from(".search-box", {
+            opacity: 0,
+            duration: 1,
+            delay: 0.8,
+            x: 500,
+            ease: "slow(0.7, 0.7, false)"
+        });
+        gsap.from("#map", {
+            opacity: 0,
+            duration: 1.5,
+            delay: 1.5,
+            y: 500,
+            ease: "circ.out"
+        });
     </script>
 
 </body>

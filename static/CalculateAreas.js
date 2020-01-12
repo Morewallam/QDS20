@@ -55,9 +55,6 @@ function calculateAreas(dataset){
         }
         lasttime = time;
 
-        
-       
-        
         count++;
         
         if(count == 1){
@@ -79,16 +76,16 @@ function calculateAreas(dataset){
                     areas[day][time][i][4]++;
                     amountSame++;
                    
-                    if(lat - areas[day][time][0] > areas[day][time][2] - areas[day][time][0] ){
+                    if(lat - areas[day][time][i][0] > areas[day][time][i][2] - areas[day][time][i][0] ){
                         areas[day][time][i][2] = lat;
     
-                    }else if(lat - areas[day][time][0] < areas[day][time][2] - areas[day][time][0] ){
+                    }else if(lat - areas[day][time][i][0] < areas[day][time][i][2] - areas[day][time][i][0] ){
                         areas[day][time][i][0] = lat;
                     }
-                    if(lon  - areas[day][time][1] > areas[day][time][3] - areas[day][time][1]){
+                    if(lon  - areas[day][time][i][1] > areas[day][time][i][3] - areas[day][time][i][1]){
                         areas[day][time][i][3] = lon;
                     }
-                    else if(lon  - areas[day][time][1] < areas[day][time][3] - areas[day][time][1]){
+                    else if(lon  - areas[day][time][i][1] < areas[day][time][i][3] - areas[day][time][i][1]){
                         areas[day][time][i][1] = lon;
                     }
                 }

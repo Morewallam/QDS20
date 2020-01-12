@@ -1,14 +1,22 @@
 
 
 function calculateAreas(dataset){
-    //ares will have 2 points to define the end points of the system,  number of tickets there, the time of day it is for, day of the week
-    //the first [] is for day, second [] is for hour third [] is for each different area that will be made.
-    //var areas[7][24][];
+    var areas = [];
 
-
-
-    var areas = [[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]]]
+    for ( var i = 0; i < 7; i++ ) {
+        areas[i] = [];
+        for ( var j =0; j < 24; j++){
+            areas[i][j] = [];
+            for( var k =0; k < 1; k++){
+                areas[i][j][k] = 0;
+            }
+        }
+    }
+    
     const walkingSpeed = 5;
+    var count = 0;
+    var lasttime = -1;
+    var amountSame = 0;
     //dataset = []
     dataset.forEach(element => {
         var day = element["Day of Week"];
@@ -36,36 +44,62 @@ function calculateAreas(dataset){
                 break;
 
         }
-        var time = element["time_of_infraction"]/100-1;
+        var time = Math.round(element["time_of_infraction"]/100);
         var minutes = element["time_of_infraction"]%100;
         var lon1;
         var lat2;
 
+        if(time != lasttime){
+            count = 0;
+            amountSame = 0;
+        }
+        lasttime = time;
 
-        if(typeof areas[day][time] == 'undefined' ){ //try to make area if there is none for that time and day
+        
+       
+        
+        count++;
+        
+        if(count == 1){
             lat1 = element.Latitude;
             lon1 = element.Longitude;
-            areas[day][time][0] = [lat1, lon1, lat1 , lon1, 1, minutes];
-        }else if(areas[day][time].length == 0){ //try to make area if there is none for that time and day
-            lat1 = element.Latitude;
-            lon1 = element.Longitude;
-            areas[day][time][0] = [lat1, lon1, lat1 , lon1, 1, minutes];
+            areas[day][time][count -1] = [lat1, lon1, lat1 , lon1, 1, minutes];
+            
         }
         else{
-            for(var i = 0; i < areas[day][time].length; i++){
-                p1 = newLatLon(element.Latitude,element.Longitude);
-                p2= newLatLon(areas[day][time][i][0],areas[day][time][i][1]);
+            for(var i = 0; i < count-1 - amountSame; i++){
+               
+                lat = element.Latitude;
+                lon = element.Longitude;
+                p1 = new LatLon(element.Latitude,element.Longitude);
+               
+                p2 = new LatLon(areas[day][time][i][0],areas[day][time][i][1]);
                 var dist = p1.distanceTo(p2);
-                if(dist/(minutes - areas[day][time][i][5]) <= walkingSpeed){
-                    areas[day][time][i][3]++;
-                    if(element.Latitude - areas[day][time][0] > areas[day][time][2] - areas[day][time][0] && element.Longitude  - areas[day][time][1] > areas[day][time][3] - areas[day][time][1]){
-                        areas[day][time][i][2] = lon2;
-                        areas[day][time][i][3] = lat2;
-                    }  
-
+                if(dist/(minutes - areas[day][time][i][5])*60 <= walkingSpeed){
+                    areas[day][time][i][4]++;
+                    amountSame++;
+                   
+                    if(lat - areas[day][time][0] > areas[day][time][2] - areas[day][time][0] ){
+                        areas[day][time][i][2] = lat;
+    
+                    }else if(lat - areas[day][time][0] < areas[day][time][2] - areas[day][time][0] ){
+                        areas[day][time][i][0] = lat;
+                    }
+                    if(lon  - areas[day][time][1] > areas[day][time][3] - areas[day][time][1]){
+                        areas[day][time][i][3] = lon;
+                    }
+                    else if(lon  - areas[day][time][1] < areas[day][time][3] - areas[day][time][1]){
+                        areas[day][time][i][1] = lon;
+                    }
                 }
-            }   
+                else{
+                    areas[day][time][count -1- amountSame] = [lat, lon, lat , lon, 1, minutes];
+                    
+                }
+             }  
+
         }
-    });
+    }
+    );
     return areas;
 }

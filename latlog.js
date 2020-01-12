@@ -429,3 +429,5 @@ function LatLon(lat, lon, rad) {
   
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
   if (!window.console) window.console = { log: function() {} };
+
+  

@@ -16,75 +16,98 @@
 
 <body>
     <div class="introduction">
-        <h1>Ticket Tracker</h1>
-        <h2>Ticket Tracker is a web application that displays the best locations for
+        <h1 class="title">Ticket Tracker</h1>
+        <h2 class="bio">Ticket Tracker is a web application that displays the best locations for
             the users to park with the lowest chances of getting a parking ticket</h2>
     </div>
+
+    
 
     <div class="search-box">
         <input class="search-txt" type="text" name="parking" placeholder="Search Parking Locations...">
         <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
     </div>
+
     <div id="map"></div>
 
     <div id="bargraph"></div>
     <script>
-      var p1 = new LatLon(51.5136, -0.0983);
-      var p2 = new LatLon(51.4778, -0.0015);
-      var dist = p1.distanceTo(p2);   // in km
-
-
-      /*
-      $.ajax({
-        url: 'http://open.mapquestapi.com/geocoding/v1/address?key=KEY&location=Vancouver',
-        success: function(response){
-          console.log(response);
-         // var location = response.results.geometry.location;
-        },
-        error: function(response){
-          console.log('server error');
-        }
-      });
-      */
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 43.6532, lng: -79.3832},
-          zoom: 10,
+        var map;
+        var input = document.getElementById('searchTextField');
+        var searchBox = new google.maps.places.SearchBox(input, {
+            bounds: defaultBounds
         });
-      }
 
-      anychart.onDocumentReady(function() {
- 
-      // set the data
-      var data = {
-          header: ["Name", "Death toll"],
-          rows: [
-            ["San-Francisco (1906)", 1500],
-            ["Messina (1908)", 87000],
-            ["Ashgabat (1948)", 175000],
-            ["Chile (1960)", 10000],
-            ["Tian Shan (1976)", 242000],
-            ["Armenia (1988)", 25000],
-            ["Iran (1990)", 50000]
-      ]};
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: 43.6532,
+                    lng: -79.3832
+                },
+                zoom: 10,
+            });
+        }
+        var p1 = new LatLon(51.5136, -0.0983);
+        var p2 = new LatLon(51.4778, -0.0015);
+        var dist = p1.distanceTo(p2); // in km
 
-      // create the chart
-      var chart = anychart.column();
 
-      // add the data
-      chart.data(data);
+        /*
+        $.ajax({
+          url: 'http://open.mapquestapi.com/geocoding/v1/address?key=KEY&location=Vancouver',
+          success: function(response){
+            console.log(response);
+           // var location = response.results.geometry.location;
+          },
+          error: function(response){
+            console.log('server error');
+          }
+        });
+        */
+        
 
-      // set the chart title
-      chart.title("The deadliest earthquakes in the XXth century");
+        anychart.onDocumentReady(function () {
 
-      // draw
-      chart.container("bargraph");
-      chart.draw();
-      });
+            // set the data
+            var data = {
+                header: ["Name", "Death toll"],
+                rows: [
+                    ["San-Francisco (1906)", 1500],
+                    ["Messina (1908)", 87000],
+                    ["Ashgabat (1948)", 175000],
+                    ["Chile (1960)", 10000],
+                    ["Tian Shan (1976)", 242000],
+                    ["Armenia (1988)", 25000],
+                    ["Iran (1990)", 50000]
+                ]
+            };
+
+            // create the chart
+            var chart = anychart.column();
+
+            // add the data
+            chart.data(data);
+
+            // set the chart title
+            chart.title("The deadliest earthquakes in the XXth century");
+
+            // draw
+            chart.container("bargraph");
+            chart.draw();
+        });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDByyZn8zjkwo17zXO1gxpuVxa0HXYNPg&callback=initMap"
-    async defer></script>
+        async defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.0.4/dist/gsap.min.js"></script>
+    <script>
+
+        gsap.from(".title", {opacity: 0, duration: 1, y: -100, ease: "power2.out"});
+        gsap.from(".bio", {opacity: 0, duration: 1, delay: 0.5, y: -100, ease: "bounce.out"});
+        gsap.from(".search-box", {opacity: 0, duration: 1, delay: 0.8, x: 500, ease: "slow(0.7, 0.7, false)"});
+        gsap.from("#map", {opacitu: 0, duration: 1.5, delay: 1.5, y: 500, ease: "circ.out"});
+    </script>
+
 </body>
 
 </html>

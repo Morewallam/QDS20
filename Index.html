@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="latlog.js"></script> 
     <script src="geo.js"></script>    
-    <script src="CalculateArea.js"></script>
+    <script src="static/CalculateAreas.js"></script>
     <script src="jsonData.js"></script>
     <script src="https://cdn.anychart.com/releases/8.0.0/js/anychart-base.min.js"></script>
 </head>
@@ -36,6 +36,7 @@
 
         console.log(data);
         var areas = calculateAreas(data);
+        console.log(areas);
         var map;
         var input = document.getElementById('searchTextField');
         var searchBox = new google.maps.places.SearchBox(input, {
@@ -106,7 +107,7 @@
         gsap.from(".title", {opacity: 0, duration: 1, y: -100, ease: "power2.out"});
         gsap.from(".bio", {opacity: 0, duration: 1, delay: 0.5, y: -100, ease: "bounce.out"});
         gsap.from(".search-box", {opacity: 0, duration: 1, delay: 0.8, x: 500, ease: "slow(0.7, 0.7, false)"});
-        gsap.from("#map", {opacitu: 0, duration: 1.5, delay: 1.5, y: 500, ease: "circ.out"});
+        gsap.from("#map", {opacity: 0, duration: 1.5, delay: 1.5, y: 500, ease: "circ.out"});
     </script>
 
 </body>
